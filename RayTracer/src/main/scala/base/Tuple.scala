@@ -212,13 +212,13 @@ class Tuple(val _x: Double, val _y: Double, val _z: Double, val _w: Integer) {
   }
 
   /**
-    * Is this a point
+    * Is this a point, if _w is 1
     * @return boolean result
     */
   def isPoint(): Boolean = _w.equals(1)
 
   /**
-    * Is this a vector
+    * Is this a vector, if _w is 0
     * @return boolean result
     */
   def isVector(): Boolean = _w.equals(0)
@@ -230,6 +230,17 @@ class Tuple(val _x: Double, val _y: Double, val _z: Double, val _w: Integer) {
   def isValid(): Boolean = isPoint() || isVector()
 
   def isUnitVector(): Boolean = (magnitude() equals 1.0) && isVector()
+
+  /**
+    * If its a color, it can be sent to RGB format.
+    * @return the new color
+    */
+  def toRGB(): Tuple = {
+    val r = _x * 255
+    val g = _y * 255
+    val b = _z * 255
+    new Tuple(r, g, b, -1)
+  }
 
 
 }
